@@ -1,0 +1,51 @@
+#include "Bureaucrat.hpp"
+
+void checkGrade(int grade, int min, int max) {
+    if (grade < min) {
+        throw Bureaucrat::GradeTooHighException();
+    }
+    else if (grade > max) {
+        throw Bureaucrat::GradeTooLowException();
+    }
+}
+
+Bureaucrat::Bureaucrat(int grade, std::string const name) : _name(name), _grade(grade) {
+	checkGrade(grade, 1, 150);
+	// std::cout << GREEN << "Bureaucrat " << BOLD << _name << RESET << GREEN<< " created, aged: " << BOLD << _grade << std::endl << RESET;
+}
+
+Bureaucrat::~Bureaucrat()	throw() {
+	// std::cout << RED << "Bureaucrat destroyed\n" << RESET;
+}
+
+const char* Bureaucrat::GradeTooHighException::what() const throw() {
+    return ("Grade too high\n ");
+}
+
+
+const char* Bureaucrat::GradeTooLowException::what() const throw() {
+    return ("Grade too low\n ");
+}
+
+std::string	Bureaucrat::getName() const{
+	return _name;
+}
+
+int Bureaucrat::getGrade(void) const{
+	return _grade;
+}
+
+void	Bureaucrat::incr(void) {
+	this->_grade--;
+	checkGrade(this->_grade);
+}
+
+void	Bureaucrat::decr(void) {
+	this->_grade++;
+	checkGrade(this->_grade);
+}
+
+std::ostream& operator<<(std::ostream& out, const Bureaucrat& bureaucrat) {
+	out << " *" << BOLD << bureaucrat.getName() << RESET << ", bureaucrat grade " << BOLD << bureaucrat.getGrade() << RESET << std::endl;
+	return out;
+}
