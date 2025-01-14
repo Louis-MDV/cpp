@@ -6,7 +6,7 @@
 #    By: louismdv <louismdv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/16 15:51:33 by louismdv          #+#    #+#              #
-#    Updated: 2024/11/15 15:34:40 by louismdv         ###   ########.fr        #
+#    Updated: 2024/11/21 11:32:10 by louismdv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ clean:
 
 fclean: clean
 	@rm -f $(NAME)
-	@printf  "[cpp05:ex00] $(RED)Cleaned all!$(RESET)\n" 
+	@printf  "[cpp05:ex01] $(RED)Cleaned all!$(RESET)\n" 
 
 re: fclean all
 

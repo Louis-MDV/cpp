@@ -1,53 +1,69 @@
 
-#include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "include/Bureaucrat.hpp"
+#include "include/AForm.hpp"
+#include "include/PresidentialPardonForm.hpp"
+#include "include/RobotomyRequestForm.hpp"
+#include "include/ShrubberyCreationForm.hpp"
+#include "../Colors.hpp"
 
 int main() {
-std::cout << "\nBasic ************************************\n";
-    try{
-        Bureaucrat  jack(11,"Jack");
-        Form        check("10dollar", 13, 10);
 
-        std::cout << check << std::endl;
+std::cout << BLUE+"\nRobotomyRequestForm ************************************\n"+RESET;
+    try {
+        Bureaucrat           jack(1, "Jack");
+        RobotomyRequestForm  presForm("form1");
+
+        std::cout << presForm << std::endl;
         std::cout << jack << std::endl;
         jack.decr();
         jack.decr();
         std::cout << jack << std::endl;
 		jack.incr();
         std::cout << jack << std::endl;
-        check.beSigned(jack);
+        presForm.beSigned(jack);
+        presForm.execute(jack);
+        presForm.execute(jack);
+        presForm.execute(jack);
+
     }
-    catch (std::exception & e)
-    {
+    catch (std::exception & e){
         std::cout << e.what() << std::endl << std::endl;
     }
 
-std::cout << "\nGrade too High ************************************\n";
-    try{
-        Bureaucrat  jack(1,"Jack");
-        Form        check("10dollar", 0, 10);
+std::cout << BLUE+"\nShrubberyCreationForm ************************************\n"+RESET;
+    try {
+        Bureaucrat              fred(137, "Fred");
+        ShrubberyCreationForm   tree("form2");
 
-        std::cout << check << std::endl;
-        std::cout << jack << std::endl;
-        check.beSigned(jack);
+        std::cout << tree << std::endl;
+        std::cout << fred << std::endl;
+
+        tree.beSigned(fred);
+        tree.execute(fred);
+        tree.execute(fred);
+        tree.execute(fred);
     }
-    catch (std::exception & e)
-    {
-        std::cout << RED << e.what() << RESET << std::endl<< std::endl;
+    catch (std::exception & e) {
+        std::cout << e.what() << std::endl << std::endl;
     }
 
-std::cout << "\nGrade too Low ************************************\n";
+std::cout << BLUE+"\nPresidentialPardonForm ************************************\n"+RESET;
+    try {
+        Bureaucrat              bob(1, "Gusto");
+        PresidentialPardonForm  obama("form3");
 
-    try{
-        Bureaucrat  jack(150, "Jack");
-        Form        check("10dollar", 151, 10);
+        std::cout << obama << std::endl;
+        std::cout << bob << std::endl;
 
-        std::cout << check << std::endl;
-        std::cout << jack << std::endl;
-        check.beSigned(jack);
+        obama.beSigned(bob);
+        obama.execute(bob);
+        bob.executeForm(obama);
     }
-    catch (std::exception & e)
-    {
-        std::cout << BLUE << e.what() << RESET << std::endl<< std::endl;
-    }    
+    catch (std::exception & e) {
+        std::cout << e.what() << std::endl << std::endl;
+    }
 }
+
+//ShrubberyCreationForm: Required grades: sign 145, exec 137
+//RobotomyRequestForm: Required grades: sign 72, exec 45
+//PresidentialPardonForm: Required grades: sign 25, exec 5

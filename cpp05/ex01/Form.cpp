@@ -1,14 +1,5 @@
 #include "Form.hpp"
 
-static void checkGrade(int grade) {
-	if (grade < 1) {
-		throw Form::GradeTooHighException();
-	}
-	if (grade > 150) {
-		throw Form::GradeTooLowException();
-	}
-}
-
 Form::Form(std::string const name, int grade, int exec_grade) : _name(name), _sign_status(false), _sign_grade(grade), _exec_grade(exec_grade) {
 	checkGrade(_sign_grade);
 }

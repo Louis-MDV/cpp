@@ -36,4 +36,5 @@ class Bureaucrat : public std::exception {
         void                decr(void);
 };
 
+void checkGrade(int grade);
 std::ostream& operator<<(std::ostream& out, const Bureaucrat& bureaucrat);

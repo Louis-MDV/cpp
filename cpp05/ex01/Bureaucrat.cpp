@@ -1,6 +1,6 @@
 #include "Bureaucrat.hpp"
 
-static void checkGrade(int grade) {
+void checkGrade(int grade) {
     if (grade < 1) {
         throw Bureaucrat::GradeTooHighException();
     }

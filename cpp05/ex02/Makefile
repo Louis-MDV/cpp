@@ -6,7 +6,7 @@
 #    By: louismdv <louismdv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/16 15:51:33 by louismdv          #+#    #+#              #
-#    Updated: 2024/11/15 15:34:40 by louismdv         ###   ########.fr        #
+#    Updated: 2024/11/20 16:25:28 by louismdv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ GREEN		= 	$(shell tput setaf 2)
 YELLOW		= 	$(shell tput setaf 3)
 NC			= 	$(shell tput sgr0)
 
-SRCS		= 	main.cpp Bureaucrat.cpp Form.cpp
+SRCS		= 	 $(addprefix src/, AForm.cpp Bureaucrat.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp) main.cpp
 
 OBJECTS 	= 	$(SRCS:.cpp=.o)
 
@@ -32,7 +32,7 @@ $(NAME): $(OBJECTS)
 	$(CXX) $(CXXFLAGS) -o $@ $(OBJECTS)
 
 # Rule to compile .cpp files into .o files
-%.o: %.cpp
+%.o: src/%.cpp
 	$(CXX) $(CXXFLAGS) -c $<
 
 # Clean up object files and the executable
@@ -41,7 +41,7 @@ clean:
 
 fclean: clean
 	@rm -f $(NAME)
-	@printf  "[cpp05:ex00] $(RED)Cleaned all!$(RESET)\n" 
+	@printf  "[cpp05:ex02] $(RED)Cleaned all!$(RESET)\n" 
 
 re: fclean all
 
