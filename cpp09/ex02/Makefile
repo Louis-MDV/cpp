@@ -9,7 +9,7 @@ GREEN		= 	$(shell tput setaf 2)
 YELLOW		= 	$(shell tput setaf 3)
 NC			= 	$(shell tput sgr0)
 
-SRCS = main.cpp
+SRCS = main.cpp PmergeMe.cpp
 
 OBJECTS 	= 	$(SRCS:.cpp=.o)
 

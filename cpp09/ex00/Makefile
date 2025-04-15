@@ -1,5 +1,5 @@
 
-NAME = BitcoinExchange
+NAME = btc
 
 CXX 		= 	c++
 CXXFLAGS	= 	-Wall -Wextra -Werror -std=c++98
@@ -9,7 +9,7 @@ GREEN		= 	$(shell tput setaf 2)
 YELLOW		= 	$(shell tput setaf 3)
 NC			= 	$(shell tput sgr0)
 
-SRCS = main.cpp
+SRCS = main.cpp BitcoinExchange.cpp
 
 OBJECTS 	= 	$(SRCS:.cpp=.o)
 

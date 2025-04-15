@@ -46,13 +46,9 @@ int Span::shortestSpan() {
     int distance = 0;
     int shortest = INT_MAX;
 
-    for (long unsigned int i = 0; i < _vec.size(); ++i) {
-        std::cout << sortedVec[i] <<std::endl;        
-    }
-
     for (unsigned int i = 0; i < sortedVec.size()-1; ++i){
         distance = sortedVec[i+1] - sortedVec[i];
-        if (distance < shortest)
+        if (distance < shortest && distance >= 0)
             shortest = distance;
     }
     std::cout << ITALIC+"\nShortest span: "+RESET;
@@ -68,9 +64,6 @@ int Span::longestSpan() {
     
     std::vector<int> sortedVec = _vec;
     std::sort(sortedVec.begin(), sortedVec.end());
-    // for (long unsigned int i = 0; i < _vec.size(); ++i) {
-    //     std::cout << sortedVec[i] <<std::endl;
-    // }
     std::cout << ITALIC+"Longest span: "+RESET;
     return sortedVec.back() - sortedVec.front();
 }

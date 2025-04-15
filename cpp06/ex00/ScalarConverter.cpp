@@ -4,10 +4,21 @@
 #include<iomanip>
 #include <cstdlib>
 
+//canoncal form
 ScalarConverter::ScalarConverter() {};
+
+ScalarConverter& ScalarConverter::operator=(const ScalarConverter &src){
+    (void)src;
+    return *this;
+}
+
+ScalarConverter::ScalarConverter(const ScalarConverter &src) {
+    *this = src;
+}
 
 ScalarConverter::~ScalarConverter() {};
 
+//special value handling
 bool ScalarConverter::isSpecialValue(const std::string &inputValue) {
     return (inputValue == "+inf" || inputValue == "-inf" || inputValue == "nan" ||
             inputValue == "+inff" || inputValue == "-inff" || inputValue == "nanf");
@@ -25,6 +36,7 @@ void    display_nan() {
     std::cout << "char: impossible\nint: impossible\nfloat: nanf\ndouble: nan" << std::endl;
 }
 
+//convert function
 void ScalarConverter::convert(const std::string& literal) {
 
     ScalarConverter converter; //instance of ScalarConverter class, can use non static
@@ -64,7 +76,9 @@ void ScalarConverter::convert(const std::string& literal) {
 
 template <typename T, typename U>
 bool ScalarConverter::checkOverflowPrint(T value) {
-    if (value > std::numeric_limits<U>::max() || value < std::numeric_limits<U>::min()) {
+    if (value > std::numeric_limits<U>::max() || 
+        (std::numeric_limits<U>::is_integer && value < std::numeric_limits<U>::min()) || 
+        (!std::numeric_limits<U>::is_integer && value < -std::numeric_limits<U>::max())) {
         std::cout << RED << "Overflow detected from type: " << BOLD << typeid(T).name() << RESET << std::endl;
         return true;
     } else {
@@ -72,7 +86,7 @@ bool ScalarConverter::checkOverflowPrint(T value) {
     }
 }
 
-/***************************** HELPER FUNCTIONS to check type *****************************/
+//HELPER functions to check type of input
 bool ScalarConverter::isInteger(const std::string& str) {
 
     if (str.empty() || (!std::isdigit(str[0]) && str[0] != '-' && str[0] != '+')) {
@@ -131,6 +145,7 @@ bool ScalarConverter::isChar(const std::string& str) {
         return false;
 }
 
+//functoin to print
 template <typename T>
 void ScalarConverter::printValue(T value) {
 

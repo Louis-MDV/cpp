@@ -11,7 +11,7 @@ int main() {
             for (std::size_t i = 0; i < intArray.size(); i++) {
                 std::cout << intArray[i] << " ";
             }
-            std::cout << std::endl;
+            std::cout << "\n-------\n";
 
         // Test exception
             try {
@@ -19,6 +19,7 @@ int main() {
             } catch (const Array<int>::IdxOutBounds& e) {
                 std::cerr << e.what();
             }
+            std::cout << "-------\n";
 
         // Create and test CHAR
             Array<char> charArray(5);
@@ -29,18 +30,18 @@ int main() {
             for (std::size_t i = 0; i < charArray.size(); i++) {
                 std::cout << charArray[i] << " ";
             }
-            std::cout << std::endl;
+            std::cout << "\n-------\n";
 
         // Test deep copy
-            Array<int> intArrayCopy = intArray;  // Utilisation du constructeur de copie profonde
-            intArray[0] = 999; // Modification de intArray sans affecter intArrayCopy
-            std::cout << "intArray content after modification : ";
+            Array<int> intArrayCopy = intArray;  // using deep copy constructor
+            intArray[0] = 100;
+            std::cout << "intArray content : ";
             for (std::size_t i = 0; i < intArray.size(); i++) {
                 std::cout << intArray[i] << " ";
             }
             std::cout << std::endl;
 
-            std::cout << "intArray content after modification shouldnt change : ";
+            std::cout << "intArrayCopy content : ";
             for (std::size_t i = 0; i < intArrayCopy.size(); i++) {
                 std::cout << intArrayCopy[i] << " ";
             }
